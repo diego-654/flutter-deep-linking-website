@@ -8,8 +8,20 @@
 </head>
 <body>
     <span>Pagina del pokemon: 1</span>
-    <a href="intent://flutter-deep-linking-website-production-9fdd.up.railway.app#Intent;scheme=https;package=com.diegov.miscelaneos;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.diegov.miscelaneos;end;">
-        <button>Usar app</button>
-    </a>
+    <button onclick="openApp()">Usar app</button>
+    
+    <script>
+        function openApp() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Detect Android devices
+            if (/android/i.test(userAgent)) {
+                window.location.href = "intent://flutter-deep-linking-website-production-9fdd.up.railway.app#Intent;scheme=https;package=com.diegov.miscelaneos;end;";
+            } else {
+                // Redirect to the web version or Play Store
+                window.location.href = "https://play.google.com/store/apps/details?id=com.diegov.miscelaneos";
+            }
+        }
+    </script>
 </body>
 </html>
