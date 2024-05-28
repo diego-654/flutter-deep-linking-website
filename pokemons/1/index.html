@@ -14,12 +14,19 @@
         function openApp() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-            // Detect Android devices
+            // Detect if the user is on Android
             if (/android/i.test(userAgent)) {
-                window.location.href = "intent://flutter-deep-linking-website-production-9fdd.up.railway.app#Intent;scheme=https;package=com.diegov.miscelaneos;end;";
+                // Try to open the app
+                var intentLink = "intent://flutter-deep-linking-website-production-9fdd.up.railway.app#Intent;scheme=https;package=com.diegov.miscelaneos;end;";
+                window.location.href = intentLink;
+
+                // Redirect to Play Store if the app is not installed
+                setTimeout(function() {
+                    window.location.href = "https://play.google.com/store/apps/details?id=com.diegov.miscelaneos";
+                }, 1500);
             } else {
-                // Redirect to the web version or Play Store
-                window.location.href = "https://play.google.com/store/apps/details?id=com.diegov.miscelaneos";
+                // Redirect to the web version or another fallback
+                window.location.href = "https://flutter-deep-linking-website-production-9fdd.up.railway.app";
             }
         }
     </script>
