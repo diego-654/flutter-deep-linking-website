@@ -1,14 +1,9 @@
-[
-    {
-        "relation": [
-            "delegate_permission/common.handle_all_urls"
-        ],
-        "target": {
-            "namespace": "android_app",
-            "package_name": "com.diegov.miscelaneos",
-            "sha256_cert_fingerprints": [
-                "73:90:F4:B0:63:90:F9:6F:D5:1E:9A:64:25:10:E1:14:B3:32:07:DE:3B:BB:75:78:E2:F4:B7:C3:B2:51:02:C0"
-            ]
-        }
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.diegov.miscelaneos",
+      "sha256_cert_fingerprints":
+      ["73:90:F4:B0:63:90:F9:6F:D5:1E:9A:64:25:10:E1:14:B3:32:07:DE:3B:BB:75:78:E2:F4:B7:C3:B2:51:02:C0"]
     }
-]
+  }]
