@@ -7,6 +7,45 @@
     <title>Pokemon Web</title>
     <link rel="stylesheet" href="../../styles.css">
     <script>
+        // Function to fetch Pokémon data from PokeAPI
+        async function fetchPokemonData(pokemonId) {
+            try {
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching Pokémon data:', error);
+                return null;
+            }
+        }
+
+        // Function to display Pokémon data on the page
+        function displayPokemonData(pokemon) {
+            if (!pokemon) {
+                document.getElementById('pokemon-container').innerHTML = '<p>Pokemon not found</p>';
+                return;
+            }
+            document.getElementById('pokemon-name').textContent = pokemon.name;
+            document.getElementById('pokemon-image').src = pokemon.sprites.front_default;
+        }
+
+        // Extract Pokémon ID from the URL
+        function getPokemonIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // Main function to initialize the page
+        async function init() {
+            const pokemonId = getPokemonIdFromUrl();
+            if (pokemonId) {
+                const pokemon = await fetchPokemonData(pokemonId);
+                displayPokemonData(pokemon);
+            }
+        }
+        // Initialize the page when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', init);
+        
         function openApp() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
