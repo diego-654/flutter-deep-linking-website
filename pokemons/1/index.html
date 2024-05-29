@@ -31,8 +31,9 @@
 
         // Extract Pokémon ID from the URL
         function getPokemonIdFromUrl() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('id');
+            const pathArray = window.location.pathname.split('/');
+            // The ID is expected to be the third segment in the path, e.g., /pokemons/25/
+            return pathArray[2];
         }
 
         // Main function to initialize the page
@@ -43,9 +44,10 @@
                 displayPokemonData(pokemon);
             }
         }
+
         // Initialize the page when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', init);
-        
+
         function openApp() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
