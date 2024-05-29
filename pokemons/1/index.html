@@ -7,45 +7,29 @@
     <title>Pokemon Web</title>
     <link rel="stylesheet" href="../../styles.css">
     <script>
-        // Function to fetch Pokémon data from PokeAPI
-        async function fetchPokemonData(pokemonId) {
-            try {
-                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                console.error('Error fetching Pokémon data:', error);
-                return null;
+        function openApp() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Detect Android devices
+            // Detect if the user is on Android
+            if (/android/i.test(userAgent)) {
+                window.location.href = "intent://flutter-deep-linking-website-production-9fdd.up.railway.app#Intent;scheme=https;package=com.diegov.miscelaneos;end;";
+                // Try to open the app
+                var intentLink = "intent://flutter-deep-linking-website-production-9fdd.up.railway.app#Intent;scheme=https;package=com.diegov.miscelaneos;end;";
+                window.location.href = intentLink;
+
+                // Redirect to Play Store if the app is not installed
+                setTimeout(function () {
+                    window.location.href = "https://play.google.com/store/apps/details?id=com.diegov.miscelaneos";
+                }, 1500);
+            } else {
+                // Redirect to the web version or Play Store
+                window.location.href = "https://play.google.com/store/apps/details?id=com.diegov.miscelaneos";
+                // Redirect to the web version or another fallback
+                window.location.href = "https://flutter-deep-linking-website-production-9fdd.up.railway.app";
             }
         }
 
-        // Function to display Pokémon data on the page
-        function displayPokemonData(pokemon) {
-            if (!pokemon) {
-                document.getElementById('pokemon-container').innerHTML = '<p>Pokemon not found</p>';
-                return;
-            }
-            document.getElementById('pokemon-name').textContent = pokemon.name;
-            document.getElementById('pokemon-image').src = pokemon.sprites.front_default;
-        }
-
-        // Extract Pokémon ID from the URL
-        function getPokemonIdFromUrl() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('id');
-        }
-
-        // Main function to initialize the page
-        async function init() {
-            const pokemonId = getPokemonIdFromUrl();
-            if (pokemonId) {
-                const pokemon = await fetchPokemonData(pokemonId);
-                displayPokemonData(pokemon);
-            }
-        }
-
-        // Initialize the page when the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', init);
     </script>
 </head>
 
