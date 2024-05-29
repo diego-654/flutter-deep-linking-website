@@ -33,7 +33,7 @@
         function getPokemonIdFromUrl() {
             const pathArray = window.location.pathname.split('/');
             // The ID is expected to be the third segment in the path, e.g., /pokemons/25/
-            return pathArray[1];
+            return pathArray[2];
         }
 
         // Main function to initialize the page
