@@ -19,7 +19,7 @@
             }
         }
 
-        // Function to display Pokémon data on the page
+        // Function para mostrar al pokemon
         function displayPokemonData(pokemon) {
             if (!pokemon) {
                 document.getElementById('pokemon-container').innerHTML = '<p>Pokemon not found</p>';
@@ -47,27 +47,37 @@
 
         // Initialize the page when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', init);
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     init(); //  carga el pokemon a mostrar
+        //     openApp(); // ejecuta la funcion de abrir la app
+        // });
 
         function openApp() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            //envía al servidor para identificar el sistema operativo, el navegador y el dispositivo del usuario.
 
             // Detect Android devices
-            // Detect if the user is on Android
+            // Detectar si esta en android (ignora mayusculas y minusculas)
             if (/android/i.test(userAgent)) {
-                window.location.href = "intent://flutter-deep-linking-website-production-9fdd.up.railway.app#Intent;scheme=https;package=com.diegov.miscelaneos;end;";
-                // Try to open the app
                 var intentLink = "intent://flutter-deep-linking-website-production-9fdd.up.railway.app#Intent;scheme=https;package=com.diegov.miscelaneos;end;";
                 window.location.href = intentLink;
 
-                // Redirect to Play Store if the app is not installed
+                // Redirecciona a la playstore si la app no esta instalada
                 setTimeout(function () {
                     window.location.href = "https://play.google.com/store/apps/details?id=com.diegov.miscelaneos";
                 }, 1500);
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // Detect iOS devices
+                var iosLink = "https://flutter-deep-linking-website-production-9fdd.up.railway.app";
+                window.location.href = iosLink;
+
+                // Redirect to the App Store if the app is not installed
+                setTimeout(function () {
+                    window.location.href = "https://apps.apple.com/us/app/com.diegov.miscelaneos";
+                }, 1500);
             } else {
-                // Redirect to the web version or Play Store
+                // redirecciona a la web de playStore
                 window.location.href = "https://play.google.com/store/apps/details?id=com.diegov.miscelaneos";
-                // Redirect to the web version or another fallback
-                //window.location.href = "https://flutter-deep-linking-website-production-9fdd.up.railway.app";
             }
         }
 
